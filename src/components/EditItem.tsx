@@ -1,8 +1,10 @@
-import styled from "@emotion/styled";
+import { useState } from "react";
 import CustomButton from "./CustomButton";
-import Plus from "../img/plus.svg";
+import Confirm from "../img/confirm.svg";
 
-function AddItem({ setinputvalue, addtask, inputvalue }: any) {
+function EditItem({ index, editTask, edit, defaultValue }) {
+  const [Edited, setEdited] = useState("" || defaultValue);
+
   return (
     <div
       style={{
@@ -21,23 +23,25 @@ function AddItem({ setinputvalue, addtask, inputvalue }: any) {
         style={{
           border: "none",
           borderRadius: "10px",
-          width: "80%",
+          width: "75%",
           outline: "none",
         }}
-        type="text"
-        value={inputvalue}
-        onChange={(e) => {
-          setinputvalue(e.target.value);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            addtask();
-          }
+        value={Edited}
+        onChange={(evt) => {
+          setEdited(evt.target.value);
         }}
       />
-      <CustomButton width={35} icon={Plus} onclick={addtask} />
+      <CustomButton
+        icon={Confirm}
+        onclick={() => {
+          editTask(index, Edited);
+          edit(false);
+        }}
+      >
+        ?
+      </CustomButton>
     </div>
   );
 }
 
-export default AddItem;
+export default EditItem;

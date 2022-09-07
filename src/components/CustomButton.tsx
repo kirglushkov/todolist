@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-function CustomButton({ icon, width, addtask }: any) {
+function CustomButton({ icon, width, onclick }: any) {
   const Button = styled.button`
     position: relative;
     width: ${width}px;
@@ -22,7 +22,7 @@ function CustomButton({ icon, width, addtask }: any) {
   const Icon = styled.img``;
 
   return (
-    <Button onClick={addtask}>
+    <Button onClick={onclick}>
       <Icon src={icon} />
     </Button>
   );

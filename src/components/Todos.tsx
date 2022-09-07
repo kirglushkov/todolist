@@ -1,6 +1,9 @@
-import Item from "./Item";
+import EditItem from "./EditItem";
 import { useState } from "react";
 import styled from "@emotion/styled";
+import CustomButton from "./CustomButton";
+import Edit from "../img/edit.svg";
+import Cross from "../img/cross.svg";
 
 function Todos({ children, index, editTask, deleteTask }: any) {
   const Editted = (a: boolean) => {
@@ -9,7 +12,7 @@ function Todos({ children, index, editTask, deleteTask }: any) {
 
   const StyledDiv = styled.div`
     width: 220px;
-    height: 40px;
+    padding: 5px 5px 5px 5px;
     left: 50px;
     top: 54px;
     display: flex;
@@ -22,7 +25,9 @@ function Todos({ children, index, editTask, deleteTask }: any) {
   `;
 
   const Wrapper = styled.div`
-    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 3px;
   `;
 
   const [isEdit, setIsEdit] = useState(false);
@@ -31,25 +36,29 @@ function Todos({ children, index, editTask, deleteTask }: any) {
     <div>
       {!isEdit ? (
         <StyledDiv>
-          {children}
+          <div style={{ marginLeft: "2%" }}>{children}</div>
           <Wrapper>
-            <button onClick={() => Editted(true)}>?</button>
-            <button
-              onClick={() => {
+            <CustomButton
+              icon={Edit}
+              width={21}
+              onclick={() => Editted(true)}
+            ></CustomButton>
+            <CustomButton
+              icon={Cross}
+              width={21}
+              onclick={() => {
                 deleteTask(index);
               }}
-            >
-              -
-            </button>
+            ></CustomButton>
           </Wrapper>
         </StyledDiv>
       ) : (
-        <Item
+        <EditItem
           index={index}
           editTask={editTask}
           edit={Editted}
           defaultValue={children}
-        ></Item>
+        ></EditItem>
       )}
     </div>
   );
