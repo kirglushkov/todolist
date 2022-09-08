@@ -14,7 +14,6 @@ function App() {
     if (!inputValue) return;
     setList([...list, inputValue]);
     setinputValue("");
-    console.log(list, "addtask");
   }, [inputValue]);
 
   const deleteTask = useCallback(
@@ -22,7 +21,6 @@ function App() {
       const newList = [...list];
       newList.splice(index, 1);
       setList(newList);
-      console.log(list, "deletetask");
     },
     [list]
   );
