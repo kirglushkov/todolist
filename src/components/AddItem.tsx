@@ -14,7 +14,7 @@ function AddItem({ setinputvalue, addtask, inputvalue }: any) {
         border: "none",
         margin: "0 auto",
         marginBottom: "10px",
-        maxWidth: "220px",
+        width: "220px",
       }}
     >
       <input

@@ -18,8 +18,7 @@ function Todos({ children, index, editTask, deleteTask }: TodosProps) {
   };
 
   const StyledDiv = styled.div`
-    width: 50vw;
-    max-width: 220px;
+    width: 220px;
     padding: 5px 5px 5px 5px;
 
     display: flex;
@@ -45,7 +44,7 @@ function Todos({ children, index, editTask, deleteTask }: TodosProps) {
       {!isEdit ? (
         <StyledDiv color="black">
           <div style={{ marginLeft: "1%", maxWidth: "20px" }}>
-            {children.length > 20 ? children.slice(0, 19) + ".." : children}
+            {children.length > 22 ? children.slice(0, 19) + "..." : children}
           </div>
           <Wrapper>
             <CustomButton
