@@ -5,21 +5,28 @@ import CustomButton from "./CustomButton";
 import Edit from "../img/edit.svg";
 import Cross from "../img/cross.svg";
 
-function Todos({ children, index, editTask, deleteTask }: any) {
+type TodosProps = {
+  children: string;
+  index: number;
+  deleteTask: (index: number) => void;
+  editTask: (index: number, value: string) => void;
+};
+
+function Todos({ children, index, editTask, deleteTask }: TodosProps) {
   const Editted = (a: boolean) => {
     setIsEdit(a);
   };
 
   const StyledDiv = styled.div`
-    width: 220px;
+    width: 50vw;
+    max-width: 220px;
     padding: 5px 5px 5px 5px;
-    left: 50px;
-    top: 54px;
+
     display: flex;
     align-items: center;
-    background: #000000;
+    background: ${(props) => props.color};
     border-radius: 5px;
-    color: #ffffff;
+    color: white;
     align-items: center;
     justify-content: space-between;
   `;
@@ -28,6 +35,7 @@ function Todos({ children, index, editTask, deleteTask }: any) {
     display: flex;
     justify-content: space-evenly;
     gap: 3px;
+    margin-left: 5px;
   `;
 
   const [isEdit, setIsEdit] = useState(false);
@@ -35,8 +43,10 @@ function Todos({ children, index, editTask, deleteTask }: any) {
   return (
     <div>
       {!isEdit ? (
-        <StyledDiv>
-          <div style={{ marginLeft: "2%" }}>{children}</div>
+        <StyledDiv color="black">
+          <div style={{ marginLeft: "1%", maxWidth: "20px" }}>
+            {children.length > 20 ? children.slice(0, 19) + ".." : children}
+          </div>
           <Wrapper>
             <CustomButton
               icon={Edit}

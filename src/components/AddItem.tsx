@@ -14,14 +14,14 @@ function AddItem({ setinputvalue, addtask, inputvalue }: any) {
         border: "none",
         margin: "0 auto",
         marginBottom: "10px",
-        width: "220px",
+        maxWidth: "220px",
       }}
     >
       <input
         style={{
           border: "none",
           borderRadius: "10px",
-          width: "80%",
+          width: "Calc(Min(100%, 220px) - 45px)",
           outline: "none",
         }}
         type="text"
