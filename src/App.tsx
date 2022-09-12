@@ -5,8 +5,27 @@ import Todos from "./components/Todos";
 import MainPanel from "./components/MainPanel";
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
+import { io } from "socket.io-client";
 
 function App() {
+  const socket = io();
+
+  socket.on("connect", () => {
+    console.log("connected");
+  });
+
+  function click_function() {
+    socket.emit("click");
+  }
+
+  socket.on("authorizated", () => {
+    socket.emit("get");
+  });
+
+  function login() {
+    socket.emit("login");
+  }
+
   const [list, setList] = useState([]);
   const [inputValue, setinputValue] = useState("");
 
