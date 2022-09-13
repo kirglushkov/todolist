@@ -2,7 +2,14 @@ import { useState } from "react";
 import CustomButton from "./CustomButton";
 import Confirm from "../img/confirm.svg";
 
-function EditItem({ index, editTask, edit, defaultValue }) {
+type EditItemProps = {
+  index: number;
+  editTask: (index: number, value: string) => void;
+  edit: (a: boolean) => void;
+  defaultValue: string;
+};
+
+function EditItem({ index, editTask, edit, defaultValue }: EditItemProps) {
   const [Edited, setEdited] = useState("" || defaultValue);
 
   return (
@@ -37,9 +44,7 @@ function EditItem({ index, editTask, edit, defaultValue }) {
           editTask(index, Edited);
           edit(false);
         }}
-      >
-        ?
-      </CustomButton>
+      ></CustomButton>
     </div>
   );
 }

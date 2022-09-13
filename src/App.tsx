@@ -7,8 +7,8 @@ import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 
 function App() {
-  const [list, setList] = useState([]);
-  const [inputValue, setinputValue] = useState("");
+  const [list, setList] = useState<string[]>([]);
+  const [inputValue, setinputValue] = useState<string>("");
 
   const addTask = useCallback(() => {
     if (!inputValue) return;
@@ -17,7 +17,7 @@ function App() {
   }, [inputValue]);
 
   const deleteTask = useCallback(
-    (index) => {
+    (index: number) => {
       const newList = [...list];
       newList.splice(index, 1);
       setList(newList);
@@ -26,7 +26,7 @@ function App() {
   );
 
   const editTask = useCallback(
-    (index, value) => {
+    (index: number, value: string) => {
       const newList = [...list];
       newList[index] = value;
       setList(newList);
@@ -34,7 +34,7 @@ function App() {
     [list]
   );
 
-  const UseStateHelper = (a) => {
+  const UseStateHelper = (a: string) => {
     setinputValue(a);
   };
 

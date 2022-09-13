@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 
-function CustomButton({ icon, width, onclick }: any) {
+type CustomButtonProps = {
+  icon: string;
+  onclick?: any;
+  width?: number;
+};
+
+function CustomButton({ icon, width, onclick }: CustomButtonProps) {
   const Button = styled.button`
     position: relative;
     width: ${width}px;

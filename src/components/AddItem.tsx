@@ -1,8 +1,13 @@
-import styled from "@emotion/styled";
 import CustomButton from "./CustomButton";
 import Plus from "../img/plus.svg";
 
-function AddItem({ setinputvalue, addtask, inputvalue }: any) {
+type AddItemProps = {
+  addtask: () => void;
+  inputvalue: string;
+  setinputvalue: (a: string) => void;
+};
+
+function AddItem({ setinputvalue, addtask, inputvalue }: AddItemProps) {
   return (
     <div
       style={{
