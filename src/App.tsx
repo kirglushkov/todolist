@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState,  useEffect  } from "react";
 import "./App.css";
 import styled from "@emotion/styled";
 import Todos from "./components/Todos";
@@ -6,25 +6,25 @@ import MainPanel from "./components/MainPanel";
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 import { io } from "socket.io-client";
-
+const socket = io();
 function App() {
-  const socket = io();
 
-  socket.on("connect", () => {
-    console.log("connected");
-  });
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("connected");
+    });
+    socket.on("authorizated", () => {
+      socket.emit("get");
+  }); }, []);
 
-  function click_function() {
-    socket.emit("click");
-  }
+  // function click_function() {
+  //   socket.emit("click");
+  // }
 
-  socket.on("authorizated", () => {
-    socket.emit("get");
-  });
 
-  function login() {
-    socket.emit("login");
-  }
+  // function login() {
+  //   socket.emit("login");
+  // }
 
   const [list, setList] = useState([]);
   const [inputValue, setinputValue] = useState("");
